@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/jampro-cicd/static/css/main.6b39fc02.css",
-    "main.js": "/jampro-cicd/static/js/main.e664c10c.js",
+    "main.js": "/jampro-cicd/static/js/main.dacdf979.js",
     "static/media/work5.jpg": "/jampro-cicd/static/media/work5.f1b36488fe1403926add.jpg",
     "static/media/work1.jpg": "/jampro-cicd/static/media/work1.e2858f6811bfe6ecd31d.jpg",
     "static/media/work4.jpg": "/jampro-cicd/static/media/work4.55f95fa18e497e40091c.jpg",
@@ -15,10 +15,10 @@
     "static/media/testimonial1.png": "/jampro-cicd/static/media/testimonial1.89079c1d25f2c94ceb89.png",
     "index.html": "/jampro-cicd/index.html",
     "main.6b39fc02.css.map": "/jampro-cicd/static/css/main.6b39fc02.css.map",
-    "main.e664c10c.js.map": "/jampro-cicd/static/js/main.e664c10c.js.map"
+    "main.dacdf979.js.map": "/jampro-cicd/static/js/main.dacdf979.js.map"
   },
   "entrypoints": [
     "static/css/main.6b39fc02.css",
-    "static/js/main.e664c10c.js"
+    "static/js/main.dacdf979.js"
   ]
 }
