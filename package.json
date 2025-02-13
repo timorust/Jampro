@@ -17,7 +17,7 @@
 	},
 	"scripts": {
 		"deploy": "gh-pages -d build",
-		"start": "PORT=10000 react-scripts start",
+		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test --passWithNoTests",
 		"eject": "react-scripts eject"
