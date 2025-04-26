@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/jampro-cicd/static/css/main.6b39fc02.css",
-    "main.js": "/jampro-cicd/static/js/main.dacdf979.js",
+    "main.css": "/jampro-cicd/static/css/main.c6a5fb5d.css",
+    "main.js": "/jampro-cicd/static/js/main.cce22e64.js",
     "static/media/work5.jpg": "/jampro-cicd/static/media/work5.f1b36488fe1403926add.jpg",
     "static/media/work1.jpg": "/jampro-cicd/static/media/work1.e2858f6811bfe6ecd31d.jpg",
     "static/media/work4.jpg": "/jampro-cicd/static/media/work4.55f95fa18e497e40091c.jpg",
@@ -14,11 +14,11 @@
     "static/media/testimonial2.png": "/jampro-cicd/static/media/testimonial2.39a53f7f092f07f5bceb.png",
     "static/media/testimonial1.png": "/jampro-cicd/static/media/testimonial1.89079c1d25f2c94ceb89.png",
     "index.html": "/jampro-cicd/index.html",
-    "main.6b39fc02.css.map": "/jampro-cicd/static/css/main.6b39fc02.css.map",
-    "main.dacdf979.js.map": "/jampro-cicd/static/js/main.dacdf979.js.map"
+    "main.c6a5fb5d.css.map": "/jampro-cicd/static/css/main.c6a5fb5d.css.map",
+    "main.cce22e64.js.map": "/jampro-cicd/static/js/main.cce22e64.js.map"
   },
   "entrypoints": [
-    "static/css/main.6b39fc02.css",
-    "static/js/main.dacdf979.js"
+    "static/css/main.c6a5fb5d.css",
+    "static/js/main.cce22e64.js"
   ]
 }
