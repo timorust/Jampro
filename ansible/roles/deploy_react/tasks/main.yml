@@ -14,7 +14,7 @@
     image: timor1/jampro:latest
     state: started
     ports:
-      - "8080:80"
+      - "8081:80"
     restart_policy: always
     recreate: yes
 
