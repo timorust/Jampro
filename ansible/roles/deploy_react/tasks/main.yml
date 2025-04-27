@@ -26,8 +26,12 @@
     owner: root
     group: root
     mode: '0644'
-  notify:
-    - Restart nginx
+
+- name: Restart nginx directly
+  service:
+    name: nginx
+    state: restarted
+  when: blue_running.stdout is defined
 
 - name: Remove old container
   docker_container:
@@ -36,10 +40,3 @@
   ignore_errors: yes
   when: blue_running.stdout is defined
   changed_when: false
-
-- name: Restart nginx
-  service:
-    name: nginx
-    state: restarted
-  changed_when: false
-  when: blue_running.stdout is defined
