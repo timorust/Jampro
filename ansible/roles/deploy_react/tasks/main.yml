@@ -22,17 +22,14 @@
   template:
     src: nginx/blue_green.conf.j2
     dest: /etc/nginx/conf.d/default.conf
-  notify: Restart nginx
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
 
 - name: Remove old container
   docker_container:
     name: "jampro-app-{{ 'blue' if next_color == 'green' else 'green' }}"
     state: absent
   ignore_errors: yes
-
-# Handlers section should be at the bottom
-handlers:
-  - name: Restart nginx
-    service:
-      name: nginx
-      state: restarted
