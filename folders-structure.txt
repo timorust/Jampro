@@ -1,0 +1,23 @@
+.
+├── build
+│   └── static
+│       ├── css
+│       ├── js
+│       └── media
+├── public
+└── src
+    ├── assets
+    └── components
+        ├── about
+        ├── contact
+        ├── footer
+        ├── header
+        ├── home
+        ├── qualification
+        ├── scrollup
+        ├── services
+        ├── skills
+        ├── testimonials
+        └── work
+
+20 directories

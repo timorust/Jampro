@@ -1,0 +1,39 @@
+- name: Determine active container
+  shell: |
+    docker ps --filter "name=jampro-app-blue" --filter "status=running" -q
+  register: blue_running
+  changed_when: false
+
+- name: Set next container color and port
+  set_fact:
+    next_color: "{{ 'green' if blue_running.stdout else 'blue' }}"
+    next_port: "{{ 8082 if blue_running.stdout else 8081 }}"
+
+- name: Deploy new container
+  community.docker.docker_container:
+    name: "jampro-app-{{ next_color }}"
+    image: timor1/jampro:latest
+    state: started
+    ports:
+      - "{{ next_port }}:80"
+    restart_policy: always
+    recreate: yes
+
+- name: Update nginx configuration (template)
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Reload nginx
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
+
+- name: Remove old container
+  community.docker.docker_container:
+    name: "jampro-app-{{ 'blue' if next_color == 'green' else 'green' }}"
+    state: absent
+  ignore_errors: yes
