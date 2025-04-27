@@ -1,7 +1,9 @@
----
 - name: Deploy React App with NGINX
   hosts: servers
   become: yes
+
+  vars:
+    active_port: "{{ next_color == 'blue' | ternary(8081, 8082) }}" 
 
   roles:
     - deploy_react
