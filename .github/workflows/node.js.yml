@@ -36,8 +36,6 @@ jobs:
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
-<<<<<<< HEAD
-=======
 
       # New step to deploy to gh-pages branch
       - name: Deploy to gh-pages
@@ -45,4 +43,3 @@ jobs:
         run: |
           npm install -g gh-pages
           gh-pages -d build
->>>>>>> main
