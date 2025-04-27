@@ -30,7 +30,8 @@
     state: absent
   ignore_errors: yes
 
-  handlers:
+# Handlers section should be at the bottom
+handlers:
   - name: Restart nginx
     service:
       name: nginx
