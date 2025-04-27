@@ -7,7 +7,7 @@
 - name: Set next container color
   set_fact:
     next_color: "{{ 'green' if blue_running.stdout else 'blue' }}"
-    next_port: "{{ 8082 if blue_running.stdout else 8081 }}"  # הוספתי קביעת פורט הבא לפי צבע
+    next_port: "{{ 8082 if blue_running.stdout else 8081 }}"
 
 - name: Deploy new container
   docker_container:
@@ -15,7 +15,7 @@
     image: timor1/jampro:latest
     state: started
     ports:
-      - "{{ next_port }}:80"  # השתמשתי במשתנה פורט
+      - "{{ next_port }}:80"
     restart_policy: always
     recreate: yes
 
@@ -23,6 +23,8 @@
   template:
     src: nginx/blue_green.conf.j2
     dest: /etc/nginx/conf.d/default.conf
+    vars:
+      active_port: "{{ next_port }}" 
 
 - name: Restart nginx
   service:
