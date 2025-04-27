@@ -39,15 +39,20 @@ pipeline {
 
         stage('Login to Docker Hub') {
             steps {
-                withDockerRegistry(credentialsId: 'docker_hub', url: '') {
-                    echo "Logged in to Docker Hub successfully!"
+                script {
+                    // Ensure that Docker Hub login is done with the correct credentials
+                    withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                        sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    }
                 }
+                echo "Logged in to Docker Hub successfully!"
             }
         }
 
         stage('Push Docker Image to Docker Hub') {
             steps {
-                withDockerRegistry(credentialsId: 'docker_hub', url: '') {
+                script {
+                    // Push the Docker image to Docker Hub
                     sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
                 }
             }
