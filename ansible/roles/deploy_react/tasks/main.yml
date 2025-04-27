@@ -4,7 +4,7 @@
   register: blue_running
   changed_when: false
 
-- name: Set next container color
+- name: Set next container color and port
   set_fact:
     next_color: "{{ 'green' if blue_running.stdout else 'blue' }}"
     next_port: "{{ 8082 if blue_running.stdout else 8081 }}"
@@ -30,6 +30,7 @@
   service:
     name: nginx
     state: restarted
+  changed_when: false
 
 - name: Remove old container
   docker_container:
@@ -37,3 +38,4 @@
     state: absent
   ignore_errors: yes
   when: blue_running.stdout is defined
+  changed_when: false
