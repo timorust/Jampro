@@ -19,12 +19,19 @@
     restart_policy: always
     recreate: yes
 
-- name: Update nginx configuration
+- name: Update nginx configuration (template)
   template:
     src: nginx/blue_green.conf.j2
     dest: /etc/nginx/conf.d/default.conf
     vars:
-      active_port: "{{ next_port }}" 
+      active_port: "{{ next_port }}"
+
+- name: Update nginx configuration (copy)
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/conf.d/default.conf
+    mode: '0644'
+  when: blue_running.stdout is defined 
 
 - name: Restart nginx
   service:
