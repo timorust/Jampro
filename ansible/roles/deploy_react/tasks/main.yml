@@ -7,6 +7,7 @@
 - name: Set next container color
   set_fact:
     next_color: "{{ 'green' if blue_running.stdout else 'blue' }}"
+    next_port: "{{ 8082 if blue_running.stdout else 8081 }}"  # הוספתי קביעת פורט הבא לפי צבע
 
 - name: Deploy new container
   docker_container:
@@ -14,7 +15,7 @@
     image: timor1/jampro:latest
     state: started
     ports:
-      - "8081:80"
+      - "{{ next_port }}:80"  # השתמשתי במשתנה פורט
     restart_policy: always
     recreate: yes
 
