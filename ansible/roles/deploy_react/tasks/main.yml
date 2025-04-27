@@ -30,7 +30,7 @@
     state: absent
   ignore_errors: yes
 
-handlers:
+  handlers:
   - name: Restart nginx
     service:
       name: nginx
