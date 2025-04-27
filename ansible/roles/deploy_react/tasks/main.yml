@@ -37,10 +37,9 @@
   when: blue_running.stdout is defined
   changed_when: false
 
-# Handlers section:
-handlers:
-  - name: Restart nginx
-    service:
-      name: nginx
-      state: restarted
-    changed_when: false
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+  changed_when: false
+  when: blue_running.stdout is defined
