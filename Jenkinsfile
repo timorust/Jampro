@@ -59,9 +59,11 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 script {
+                    // Determining the next container color based on running containers
                     def nextColor = sh(script: "docker ps --filter 'name=jampro-app-blue' --filter 'status=running' -q | grep . && echo green || echo blue", returnStdout: true).trim()
                     echo "Next deployment color: ${nextColor}"
 
+                    // Running the Ansible playbook with the next_color variable
                     sh "ansible-playbook ansible/deploy.yml -i ansible/inventory.ini --extra-vars \"next_color=${nextColor}\""
                 }
             }

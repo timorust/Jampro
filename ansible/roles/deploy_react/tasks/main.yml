@@ -36,3 +36,4 @@
     name: "jampro-app-{{ 'blue' if next_color == 'green' else 'green' }}"
     state: absent
   ignore_errors: yes
+  when: blue_running.stdout is defined
