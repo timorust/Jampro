@@ -1,0 +1,125 @@
+.
+├── .dockerignore
+├── .github
+│   └── workflows
+│       └── node.js.yml
+├── .gitignore
+├── .vscode
+│   └── settings.json
+├── Dockerfile
+├── Jenkinsfile
+├── README.md
+├── ansible
+│   ├── deploy.yml
+│   ├── inventory.ini
+│   ├── roles
+│   │   └── deploy_react
+│   │       ├── tasks
+│   │       │   └── main.yml
+│   │       └── templates
+│   │           ├── nginx
+│   │           │   └── blue_green.conf.j2
+│   │           └── nginx.conf.j2
+│   └── vars.yml
+├── build
+│   ├── asset-manifest.json
+│   ├── index.html
+│   └── static
+│       ├── css
+│       │   ├── main.c6a5fb5d.css
+│       │   └── main.c6a5fb5d.css.map
+│       ├── js
+│       │   ├── main.cce22e64.js
+│       │   ├── main.cce22e64.js.LICENSE.txt
+│       │   └── main.cce22e64.js.map
+│       └── media
+│           ├── about.12d92b774c363985d4eb.jpg
+│           ├── cv.059ae11a84493bc681d5.docx
+│           ├── profile.c76007d5ec58f1a65f6c.jpg
+│           ├── testimonial1.89079c1d25f2c94ceb89.png
+│           ├── testimonial2.39a53f7f092f07f5bceb.png
+│           ├── testimonial3.2e18bfe27c6d2e2e9fdc.png
+│           ├── work1.e2858f6811bfe6ecd31d.jpg
+│           ├── work2.7a2b335c72738225120a.jpg
+│           ├── work3.2c33a00e0423d65fc67a.jpg
+│           ├── work4.55f95fa18e497e40091c.jpg
+│           └── work5.f1b36488fe1403926add.jpg
+├── folders-structure.txt
+├── nginx.conf
+├── package-lock.json
+├── package.json
+├── public
+│   └── index.html
+├── src
+│   ├── App.css
+│   ├── App.js
+│   ├── assets
+│   │   ├── about.jpg
+│   │   ├── cv.docx
+│   │   ├── files.svg
+│   │   ├── hand.svg
+│   │   ├── profile.jpg
+│   │   ├── scroll.svg
+│   │   ├── send.svg
+│   │   ├── testimonial1.png
+│   │   ├── testimonial2.png
+│   │   ├── testimonial3.png
+│   │   ├── testimonial4.png
+│   │   ├── work.jpg
+│   │   ├── work1.jpg
+│   │   ├── work10.jpg
+│   │   ├── work2.jpg
+│   │   ├── work3.jpg
+│   │   ├── work4.jpg
+│   │   ├── work5.jpg
+│   │   ├── work7.jpg
+│   │   ├── work8.jpg
+│   │   └── work9.jpg
+│   ├── components
+│   │   ├── about
+│   │   │   ├── About.jsx
+│   │   │   ├── Info.jsx
+│   │   │   └── about.css
+│   │   ├── contact
+│   │   │   ├── Contact.jsx
+│   │   │   └── contact.css
+│   │   ├── footer
+│   │   │   ├── Footer.jsx
+│   │   │   └── footer.css
+│   │   ├── header
+│   │   │   ├── Header.jsx
+│   │   │   └── header.css
+│   │   ├── home
+│   │   │   ├── Data.jsx
+│   │   │   ├── Home.jsx
+│   │   │   ├── ScrollDown.jsx
+│   │   │   ├── Social.jsx
+│   │   │   └── home.css
+│   │   ├── qualification
+│   │   │   ├── Qualification.jsx
+│   │   │   └── qualification.css
+│   │   ├── scrollup
+│   │   │   ├── ScrollUp.jsx
+│   │   │   └── scrollup.css
+│   │   ├── services
+│   │   │   ├── Services.jsx
+│   │   │   └── services.css
+│   │   ├── skills
+│   │   │   ├── Examination.jsx
+│   │   │   ├── Operation.jsx
+│   │   │   ├── Skills.jsx
+│   │   │   └── skills.css
+│   │   ├── testimonials
+│   │   │   ├── Data.jsx
+│   │   │   ├── Testimonials.jsx
+│   │   │   └── testimonials.css
+│   │   └── work
+│   │       ├── Data.jsx
+│   │       ├── Work.jsx
+│   │       ├── WorkItems.jsx
+│   │       ├── Works.jsx
+│   │       └── work.css
+│   └── index.js
+└── structure.txt
+
+29 directories, 93 files

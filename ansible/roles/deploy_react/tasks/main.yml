@@ -10,7 +10,7 @@
     next_port: "{{ 8082 if blue_running.stdout else 8081 }}"
 
 - name: Deploy new container
-  docker_container:
+  community.docker.docker_container:
     name: "jampro-app-{{ next_color }}"
     image: timor1/jampro:latest
     state: started
@@ -27,22 +27,13 @@
     group: root
     mode: '0644'
 
-- name: Check if nginx is running
-  shell: "systemctl is-active nginx"
-  register: nginx_status
-  ignore_errors: true
-  changed_when: false
-
-- name: Restart nginx if necessary
-  service:
+- name: Reload nginx
+  ansible.builtin.service:
     name: nginx
-    state: restarted
-  when: nginx_status.stdout != "active" or nginx_status.stdout is not defined
+    state: reloaded
 
 - name: Remove old container
-  docker_container:
+  community.docker.docker_container:
     name: "jampro-app-{{ 'blue' if next_color == 'green' else 'green' }}"
     state: absent
   ignore_errors: yes
-  when: blue_running.stdout is defined
-  changed_when: false
