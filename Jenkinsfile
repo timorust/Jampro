@@ -64,7 +64,7 @@ pipeline {
                     echo "Next deployment color: ${nextColor}"
 
                     // Running the Ansible playbook with the next_color variable
-                    sh "ansible-playbook ansible/deploy.yml -i ansible/inventory.ini --extra-vars \"next_color=${nextColor}\""
+                    sh "ansible-playbook ansible/deploy.yml -i ansible/inventory.ini --extra-vars \"next_color=${nextColor} active_port=${active_port}\""
                 }
             }
         }
