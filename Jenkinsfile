@@ -63,7 +63,11 @@ pipeline {
                     def nextColor = sh(script: "docker ps --filter 'name=jampro-app-blue' --filter 'status=running' -q | grep . && echo green || echo blue", returnStdout: true).trim()
                     echo "Next deployment color: ${nextColor}"
 
-                    // Running the Ansible playbook with the next_color variable
+                    // Setting the active_port value (for example, 8080)
+                    def active_port = 8080
+                    echo "Active port: ${active_port}"
+
+                    // Running the Ansible playbook with the next_color and active_port variables
                     sh "ansible-playbook ansible/deploy.yml -i ansible/inventory.ini --extra-vars \"next_color=${nextColor} active_port=${active_port}\""
                 }
             }
