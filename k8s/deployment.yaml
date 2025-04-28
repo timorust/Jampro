@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jampro-deployment
+  labels:
+    app: jampro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jampro
+  template:
+    metadata:
+      labels:
+        app: jampro
+    spec:
+      containers:
+      - name: jampro-container
+        image: timor1/jampro:latest
+        ports:
+        - containerPort: 80

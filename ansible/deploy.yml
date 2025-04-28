@@ -1,6 +1,6 @@
-- name: Deploy React App with NGINX
-  hosts: servers
-  become: yes
-
+---
+- hosts: localhost
+  vars_files:
+    - vars.yml
   roles:
-    - deploy_react
+    - deploy_k8s

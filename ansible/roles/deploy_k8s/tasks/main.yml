@@ -1,0 +1,6 @@
+---
+- name: Deploy Jampro app to Kubernetes
+  shell: |
+    kubectl apply -f {{ k8s_folder }}
+  args:
+    chdir: "{{ project_root }}"
