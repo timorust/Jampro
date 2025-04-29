@@ -4,12 +4,30 @@ pipeline {
     environment {
         DOCKER_IMAGE = "timor1/jampro"
         DOCKER_TAG = "latest"
+        VENV_PATH = "/var/lib/jenkins/.ansible-venv"  // נתיב לסביבה הווירטואלית
     }
 
     stages {
         stage('Checkout Code') {
             steps {
                 git url: 'https://github.com/timorust/Jampro.git', branch: 'main', credentialsId: 'docker_hub'
+            }
+        }
+
+        stage('Create Virtual Environment') {
+            steps {
+                script {
+                    echo "🔧 Preparing Ansible environment..."
+                    if (!fileExists(VENV_PATH)) {
+                        sh "python3 -m venv ${VENV_PATH}"
+                        sh "${VENV_PATH}/bin/pip install --upgrade pip"
+                        sh "${VENV_PATH}/bin/pip install ansible kubernetes"
+                    } else {
+                        echo "✅ Virtual environment already exists"
+                    }
+
+                    sh "${VENV_PATH}/bin/ansible-galaxy collection install kubernetes.core --force"
+                }
             }
         }
 
@@ -53,14 +71,21 @@ pipeline {
 
         stage('Deploy to Kubernetes with Ansible') {
             steps {
-                sh 'ansible-playbook ansible/deploy.yml'
+                script {
+                    echo "🚀 Running full Ansible playbook..."
+                    withEnv(["PATH=${VENV_PATH}/bin:$PATH", "KUBECONFIG=/home/jenkins/.kube/config"]) {
+                        dir('ansible') {
+                            sh "${VENV_PATH}/bin/ansible-playbook -i inventory.ini site.yml"
+                        }
+                    }
+                }
             }
         }
 
         stage('Clean Up Docker Images') {
             steps {
                 script {
-                    // Remove the local Docker image after push
+                    // הסרת תמונות Docker מקומיות
                     echo "Cleaning up local Docker images..."
                     sh 'docker rmi $DOCKER_IMAGE:$DOCKER_TAG || true'
                 }
