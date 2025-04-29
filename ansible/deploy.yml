@@ -17,7 +17,7 @@
       until: rollout_status.rc == 0
 
     - name: Test that Service is reachable
-      shell: curl -f http://localhost:30000
+      shell: curl -f http://localhost:30010
       register: curl_result
       retries: 5
       delay: 5

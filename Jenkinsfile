@@ -53,7 +53,7 @@ pipeline {
 
         stage('Deploy to Kubernetes with Ansible') {
             steps {
-                sh 'ansible-playbook deploy.yml'
+                sh 'ansible-playbook ansible/deploy.yml'
             }
         }
 
