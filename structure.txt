@@ -52,7 +52,8 @@
 ├── k8s
 │   ├── deployment.yaml
 │   └── service.yaml
-├── nginx.conf
+├── nginx
+│   └── nginx.conf
 ├── package-lock.json
 ├── package.json
 ├── public
@@ -129,4 +130,4 @@
 │   └── index.js
 └── structure.txt
 
-33 directories, 96 files
+34 directories, 96 files

@@ -23,7 +23,7 @@ FROM nginx:stable-alpine
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # Copy the custom Nginx configuration file to adjust server settings
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80 for HTTP traffic (default port for Nginx)
 EXPOSE 80
