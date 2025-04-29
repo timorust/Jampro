@@ -1,2 +1,2 @@
-active_port: 8080
+active_port: 8083
 k8s_folder: "k8s"
