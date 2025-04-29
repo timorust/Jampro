@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'git@github.com:timorust/Jampro.git'
+                git url: 'https://github.com/timorust/Jampro.git', branch: 'main', credentialsId: 'docker_hub'
             }
         }
 
