@@ -41,13 +41,29 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
+                script {
+                    try {
+                        sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
+                    } catch (Exception e) {
+                        echo "⚠️ Warning: Docker push failed, but continuing pipeline. Error: ${e.getMessage()}"
+                    }
+                }
             }
         }
 
         stage('Deploy to Kubernetes with Ansible') {
             steps {
                 sh 'ansible-playbook deploy.yml'
+            }
+        }
+
+        stage('Clean Up Docker Images') {
+            steps {
+                script {
+                    // Remove the local Docker image after push
+                    echo "Cleaning up local Docker images..."
+                    sh 'docker rmi $DOCKER_IMAGE:$DOCKER_TAG || true'
+                }
             }
         }
     }
