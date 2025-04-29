@@ -45,10 +45,9 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes with Ansible') {
             steps {
-                sh 'kubectl apply -f k8s/deployment.yaml'
-                sh 'kubectl apply -f k8s/service.yaml'
+                sh 'ansible-playbook deploy.yml'
             }
         }
     }

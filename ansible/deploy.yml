@@ -1,6 +1,24 @@
 ---
-- hosts: localhost
-  vars_files:
-    - vars.yml
-  roles:
-    - deploy_k8s
+- name: Deploy React App to Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Apply Kubernetes Deployment
+      shell: kubectl apply -f k8s/deployment.yaml
+
+    - name: Apply Kubernetes Service
+      shell: kubectl apply -f k8s/service.yaml
+
+    - name: Wait for Deployment to be available
+      shell: kubectl rollout status deployment/jampro-deployment
+      register: rollout_status
+      retries: 5
+      delay: 10
+      until: rollout_status.rc == 0
+
+    - name: Test that Service is reachable
+      shell: curl -f http://localhost:30000
+      register: curl_result
+      retries: 5
+      delay: 5
+      until: curl_result.rc == 0
