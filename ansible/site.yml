@@ -1,0 +1,10 @@
+- name: Deploy full app to K8s
+  hosts: all
+  become: true
+
+  vars_files:
+    - vars.yml
+
+  roles:
+    - deploy_k8s
+    - deploy_react
