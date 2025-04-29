@@ -6,12 +6,12 @@
     - name: Apply Kubernetes Deployment
       kubernetes.core.k8s:
         state: present
-        definition: /workspaces/Jampro/k8s/deployment.yaml
+        definition: ./k8s/deployment.yaml
 
     - name: Apply Kubernetes Service
       kubernetes.core.k8s:
         state: present
-        definition: /workspaces/Jampro/k8s/service.yaml
+        definition: ./k8s/service.yaml
 
     - name: Wait for Deployment to be available
       shell: kubectl rollout status deployment/jampro-deployment

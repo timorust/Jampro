@@ -15,4 +15,6 @@ yarn-debug.log*
 yarn-error.log*
 
 Dockerfile
+*.log
+nginx.conf
 .dockerignore

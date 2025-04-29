@@ -13,6 +13,10 @@
 │   ├── deploy.yml
 │   ├── inventory.ini
 │   ├── roles
+│   │   ├── deploy_k8s
+│   │   │   ├── tasks
+│   │   │   │   └── main.yml
+│   │   │   └── templates
 │   │   └── deploy_react
 │   │       ├── tasks
 │   │       │   └── main.yml
@@ -45,6 +49,9 @@
 │           ├── work4.55f95fa18e497e40091c.jpg
 │           └── work5.f1b36488fe1403926add.jpg
 ├── folders-structure.txt
+├── k8s
+│   ├── deployment.yaml
+│   └── service.yaml
 ├── nginx.conf
 ├── package-lock.json
 ├── package.json
@@ -122,4 +129,4 @@
 │   └── index.js
 └── structure.txt
 
-29 directories, 93 files
+33 directories, 96 files
