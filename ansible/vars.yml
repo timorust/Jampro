@@ -1,4 +1,2 @@
-active_port: 8080;
-project_root: "/workspaces/Jampro"
+active_port: 8080
 k8s_folder: "k8s"
-
