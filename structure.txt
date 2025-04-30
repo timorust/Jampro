@@ -10,6 +10,7 @@
 ├── Jenkinsfile
 ├── README.md
 ├── ansible
+│   ├── ansible.cfg
 │   ├── deploy.yml
 │   ├── inventory.ini
 │   ├── roles
@@ -24,6 +25,7 @@
 │   │           ├── nginx
 │   │           │   └── blue_green.conf.j2
 │   │           └── nginx.conf.j2
+│   ├── site.yml
 │   └── vars.yml
 ├── build
 │   ├── asset-manifest.json
@@ -130,4 +132,4 @@
 │   └── index.js
 └── structure.txt
 
-34 directories, 96 files
+34 directories, 98 files
