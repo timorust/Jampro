@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "timor1/jampro"
         DOCKER_TAG = "latest"
-        VENV_PATH = "/var/lib/jenkins/.ansible-venv"  // נתיב לסביבה הווירטואלית
+        VENV_PATH = "/var/lib/jenkins/.ansible-venv" 
     }
 
     stages {
@@ -36,7 +36,7 @@ pipeline {
                 script {
                     if (fileExists('package.json')) {
                         echo "📦 Installing NPM dependencies..."
-                        sh 'npm ci'  
+                        sh 'npm install'  
                     } else {
                         echo "⚠️ package.json not found, skipping npm install"
                     }
