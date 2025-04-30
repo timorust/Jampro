@@ -85,7 +85,6 @@ pipeline {
         stage('Clean Up Docker Images') {
             steps {
                 script {
-                    // הסרת תמונות Docker מקומיות
                     echo "Cleaning up local Docker images..."
                     sh 'docker rmi $DOCKER_IMAGE:$DOCKER_TAG || true'
                 }
