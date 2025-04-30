@@ -2,7 +2,7 @@
 	"name": "jampro",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://timorust.github.io/jampro-cicd",
+	"homepage": "/jampro-cicd",
 	"dependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"@emailjs/browser": "^3.12.1",
