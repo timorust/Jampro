@@ -4,21 +4,21 @@
   register: blue_running
   changed_when: false
 
-- name: Set next container color and port
+- name: Set default next port
   set_fact:
     next_color: "{{ 'green' if blue_running.stdout else 'blue' }}"
     next_port: "{{ 8082 if blue_running.stdout else 8081 }}"
 
-- name: Check if port is available
+- name: Check if default port is in use
   shell: |
-    lsof -i :{{ next_port }} || true
+    lsof -i :{{ next_port }} | grep LISTEN || true
   register: port_check
   changed_when: false
 
 - name: Find an available port if needed
   shell: |
     for port in 8082 8083 8084 8085; do
-      if ! lsof -i :$port; then
+      if ! lsof -i :$port | grep LISTEN; then
         echo $port
         break
       fi
@@ -29,7 +29,7 @@
 
 - name: Set next port to available one
   set_fact:
-    next_port: "{{ available_port.stdout }}"
+    next_port: "{{ available_port.stdout_lines[0] }}"
   when: port_check.stdout != ""
 
 - name: Deploy new container
