@@ -15,9 +15,21 @@
   register: port_check
   changed_when: false
 
-- name: Fail if port is in use
-  fail:
-    msg: "Port {{ next_port }} is already in use. Choose a different port."
+- name: Find an available port if needed
+  shell: |
+    for port in 8082 8083 8084 8085; do
+      if ! lsof -i :$port; then
+        echo $port
+        break
+      fi
+    done
+  register: available_port
+  changed_when: false
+  when: port_check.stdout != ""
+
+- name: Set next port to available one
+  set_fact:
+    next_port: "{{ available_port.stdout }}"
   when: port_check.stdout != ""
 
 - name: Deploy new container
@@ -48,20 +60,3 @@
     name: "jampro-app-{{ 'blue' if next_color == 'green' else 'green' }}"
     state: absent
   ignore_errors: yes
-
-- name: Find an available port if needed
-  shell: |
-    for port in 8082 8083 8084 8085; do
-      if ! lsof -i :$port; then
-        echo $port
-        break
-      fi
-    done
-  register: available_port
-  changed_when: false
-  when: port_check.stdout != ""
-
-- name: Set next port to available one
-  set_fact:
-    next_port: "{{ available_port.stdout }}"
-  when: port_check.stdout != ""
