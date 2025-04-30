@@ -81,6 +81,7 @@ pipeline {
                 script {
                     echo "📤 Pushing Docker image to Docker Hub..."
                     try {
+                        // Only push if the image was built successfully
                         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     } catch (Exception e) {
                         echo "⚠️ Warning: Docker push failed, but continuing pipeline. Error: ${e.getMessage()}"
@@ -107,6 +108,8 @@ pipeline {
                 script {
                     echo "🧹 Cleaning up local Docker images..."
                     sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || true"
+                    // Optionally clean all dangling images as well
+                    sh "docker image prune -f"
                 }
             }
         }
