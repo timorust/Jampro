@@ -45,14 +45,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
             }
         }
 
         stage('Login to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                    sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
                 }
             }
         }
@@ -61,7 +61,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'docker push $DOCKER_IMAGE:$DOCKER_TAG'
+                        sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     } catch (Exception e) {
                         echo "⚠️ Warning: Docker push failed, but continuing pipeline. Error: ${e.getMessage()}"
                     }
@@ -86,7 +86,7 @@ pipeline {
             steps {
                 script {
                     echo "Cleaning up local Docker images..."
-                    sh 'docker rmi $DOCKER_IMAGE:$DOCKER_TAG || true'
+                    sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || true"
                 }
             }
         }
