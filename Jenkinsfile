@@ -33,19 +33,36 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                script {
+                    if (fileExists('package.json')) {
+                        echo "📦 Installing NPM dependencies..."
+                        sh 'npm ci'  
+                    } else {
+                        echo "⚠️ package.json not found, skipping npm install"
+                    }
+                }
             }
         }
 
         stage('Build React App') {
             steps {
-                sh 'npm run build'
+                script {
+                    if (fileExists('package.json')) {
+                        echo "🛠️ Building React App..."
+                        sh 'npm run build'
+                    } else {
+                        echo "⚠️ React source not found, skipping build"
+                    }
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                script {
+                    echo "🐳 Building Docker image..."
+                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
+                }
             }
         }
 
@@ -62,6 +79,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    echo "📤 Pushing Docker image to Docker Hub..."
                     try {
                         sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     } catch (Exception e) {
@@ -87,7 +105,7 @@ pipeline {
         stage('Clean Up Docker Images') {
             steps {
                 script {
-                    echo "Cleaning up local Docker images..."
+                    echo "🧹 Cleaning up local Docker images..."
                     sh "docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} || true"
                 }
             }
