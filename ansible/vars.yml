@@ -1,2 +1,4 @@
 active_port: 8083
 k8s_folder: "k8s"
+image_name: "timor1/jampro:latest"
+
